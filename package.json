@@ -23,5 +23,8 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
+  },
+  "dependencies": {
+    "vue-router": "4"
   }
 }

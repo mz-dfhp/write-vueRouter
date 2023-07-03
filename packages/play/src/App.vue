@@ -2,9 +2,8 @@
 </script>
 
 <template>
-  <div>
-    项目
-  </div>
+  App
+  <routerView />
 </template>
 
 <style scoped></style>

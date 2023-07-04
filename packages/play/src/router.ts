@@ -1,9 +1,11 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createRouterMatcher, createWebHashHistory } from 'vue-router'
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 const Home = () => import('./home.vue')
 const About = () => import('./about.vue')
+const Father = () => import('./father.vue')
+const Son = () => import('./son.vue')
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -11,6 +13,14 @@ const About = () => import('./about.vue')
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
+  { path: '/props/:id', component: About, props: true },
+  {
+    path: '/father',
+    component: Father,
+    children: [{
+      path: 'son', component: Son,
+    }],
+  },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
@@ -22,6 +32,13 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes, // `routes: routes` 的缩写
 })
+const matcher = createRouterMatcher(routes, {
+  // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+  history: createWebHashHistory(),
+  routes, // `routes: routes` 的缩写
+})
 
+console.log(matcher.getRoutes())
+debugger
 console.log(router)
 export { router }

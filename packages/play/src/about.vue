@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{ id: any }>()
+</script>
 
 <template>
   <div class="">
-    about
+    about{{ props.id }}
   </div>
 </template>
 
